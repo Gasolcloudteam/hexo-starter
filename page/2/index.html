@@ -18,7 +18,7 @@
   <meta name="author" content="星尘">
   <meta name="keywords" content="">
   
-  <title>标签 - 枷锁云-星尘blog</title>
+  <title>枷锁云-星尘blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -48,7 +48,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,12 +142,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://www.dmoe.cc/random.php') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210809/雷姆.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -168,16 +168,66 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="text-center tagcloud">
-  <a href="/tags/%E5%81%87%E6%9C%9FJava%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px; color: #bbe">假期Java学习笔记</a> <a href="/tags/%E5%85%AC%E5%91%8A/" style="font-size: 30px; color: #337ab7">公告</a> <a href="/tags/%E7%94%B5%E5%BD%B1%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" style="font-size: 15px; color: #bbe">电影资源分享</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/" style="font-size: 15px; color: #bbe">软件分享</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/" style="font-size: 22.5px; color: #779bd3">软件教程</a>
-</div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/24/hello-world/" target="_self">
+          <img src="https://www.dmoe.cc/random.php" srcset="/img/loading.gif" lazyload alt="Hello World">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/24/hello-world/" target="_self">
+          Hello World
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/24/hello-world/" target="_self">
+          
+          
+            
+          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-24 00:00" pubdate>
+              2021-01-24
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+
+
 
               </div>
             </div>
@@ -286,7 +336,34 @@
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+      $.ajax({
+        type: 'GET',
+        url: 'https://v1.hitokoto.cn/',
+        headers: {},
+        dataType: 'json',
+        success: function (result) {
+          var text;
+          if (result) {
+            var keys = 'hitokoto'.split('.')
+            if (result instanceof Array) {
+              result = result[0]
+            }
+            for (const k of keys) {
+              var value = result[k]
+              if (typeof value === 'string') {
+                text = value
+                break
+              } else if (value instanceof Object) {
+                result = value
+              }
+            }
+          }
+          text ? typing(text) : typing(title);
+        },
+        error: function () {
+          typing(title)
+        }
+      })
       
     })(window, document);
   </script>

@@ -4,9 +4,259 @@
   
   
   <entry>
+    <title>WSL开启图形化（GUI）</title>
+    <link href="/2021/08/03/WSL%E5%BC%80%E5%90%AF%E5%9B%BE%E5%BD%A2%E5%8C%96%EF%BC%88GUI%EF%BC%89/"/>
+    <url>/2021/08/03/WSL%E5%BC%80%E5%90%AF%E5%9B%BE%E5%BD%A2%E5%8C%96%EF%BC%88GUI%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>WSL如何开启图形化？</p><p>相信这是一个很多使用过的朋友想知道的问题，</p><p>那么今天我给大家带来通过MOE万能脚本自动部署的教程</p><iframe src="//player.bilibili.com/player.html?aid=249536735&bvid=BV1sv411J7mY&cid=381589100&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><p>视频地址：<a href="https://www.bilibili.com/video/BV1sv411J7mY?share_source=copy_web">https://www.bilibili.com/video/BV1sv411J7mY?share_source=copy_web</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>软件教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软件教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>我的第一个 JAVA 程序</title>
+    <link href="/2021/07/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA-JAVA-%E7%A8%8B%E5%BA%8F/"/>
+    <url>/2021/07/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA-JAVA-%E7%A8%8B%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Java简介"><a href="#Java简介" class="headerlink" title="Java简介"></a>Java简介</h2><p>Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的高级程序设计语言。</p><p>Java 可运行于多个平台，如 Windows, Mac OS 及其他多种 UNIX 版本的系统。</p><p>本教程通过简单的实例将让大家更好的了解 Java 编程语言。</p><p>移动操作系统 Android 大部分的代码采用 Java 编程语言编程。</p><h2 id="我的第一个-JAVA-程序"><a href="#我的第一个-JAVA-程序" class="headerlink" title="我的第一个 JAVA 程序"></a>我的第一个 JAVA 程序</h2><p>以下我通过一个简单的实例来展示 Java 编程，创建文件 <strong>HelloWorld.java(文件名需与类名一致)</strong>, 代码如下：</p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello World&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>注：<strong>String args[]</strong> 与<strong>String[] args</strong> 都可以执行，但推荐使用<strong>String[] args</strong>，这样可以避免歧义和误读。</p><p>运行以上实例，输出结果如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">$ javac HelloWorld.java<br>$ java HelloWorld<br>Hello World<br></code></pre></td></tr></table></figure><h3 id="执行命令解析："><a href="#执行命令解析：" class="headerlink" title="执行命令解析："></a>执行命令解析：</h3><p>以上我使用了两个命令 <strong>javac</strong> 和 <strong>java</strong>。</p><p><strong>javac</strong> 后面跟着的是java文件的文件名，例如 <strong>HelloWorld.java</strong>。 该命令用于<u>将 java 源文件编译为 class 字节码文件</u>，如： <strong>javac HelloWorld.java</strong>。</p><p>运行javac命令后，如果成功编译没有错误的话，会出现一个 HelloWorld.class 的文件。</p><p><strong>java</strong> 后面跟着的是java文件中的类名,例如 HelloWorld 就是类名，如: java HelloWorld。</p><p><strong>注意</strong>：java命令后面不要加.class。</p><p>Gif 图演示：</p><p><img src="https://ae01.alicdn.com/kf/H00a67a5eb78f4c3785ca3e22fc08c25d1.png" alt="java-HelloWorld.gif"></p><h2 id="易混知识点解析"><a href="#易混知识点解析" class="headerlink" title="易混知识点解析"></a>易混知识点解析</h2><p>有的小伙伴看到后不理解，为什么是 <strong>String[] args</strong>，这个 <strong>args</strong> 是干嘛的？</p><p><strong>String[] args</strong> 可以看出来<u>它是一个数组</u>。在命令行中比如运行 <strong>Test.class</strong> 文件,你可以这样写：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">java Test runoob<br></code></pre></td></tr></table></figure><p>相当于给数组传入了一个 <strong>runoob</strong> 字符串。也可以打印出来，可以作为简单的输入。</p><p>例如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        System.out.println(args[<span class="hljs-number">0</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>运行以上实例，输出结果如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">$ javac Test.java<br>$ java Test runoob<br>runoob<br></code></pre></td></tr></table></figure><p>此处注意，main 是一个程序的入口，一个 java 程序运行必须而且有且仅有一个 main 方法。</p><p>args[0] 是你传入的第一个参数，args[1]是传入的第二个参数，以此类推。</p><blockquote><p><strong>String[] args</strong> 还有一种等价的写法： <strong>String… args</strong></p><p>前者为数组形式, 后者为可变参数形式。</p><p>前者用得较多, 但是看到后者也应认识。</p></blockquote><p>Java 程序利用 main 函数中 args 参数实现参数的传递(<strong>传递空格处理</strong>)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String []args)</span></span><br><span class="hljs-function">    </span>&#123;<br>        System.out.println(args[<span class="hljs-number">0</span>]);<br>        System.out.println(args[<span class="hljs-number">1</span>]);<br>        System.out.println(args[<span class="hljs-number">2</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>用控制台编译运行：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">$ javac Test.java<br>$ java Test aaa bbb ccc <br>aaa<br>bbb<br>ccc<br></code></pre></td></tr></table></figure><p><strong>注意：</strong>三个参数之间用空格隔开！</p><p><strong>如果要输出空格怎么办？</strong></p><p>只需要在包含空格的参数上，使用双引号 <strong>“”</strong> 即可。</p><p>实例运行：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">$ java Test aaa <span class="hljs-string">&quot;b   bb&quot;</span> ccc<br>aaa<br>b   bb<br>ccc<br></code></pre></td></tr></table></figure><blockquote><p><strong>public static void main(String[] args) 是什么意思？</strong></p><p>这是 Java 程序的入口地址，Java 虚拟机运行程序的时候首先找的就是 main 方法。跟 C 语言里面的 main() 函数的作用是一样的。只有有 main() 方法的 Java 程序才能够被 Java 虚拟机运行，可理解为规定的格式。</p><p>对于里面的参数及修饰符：</p><ul><li> <strong>public</strong>：表示的这个程序的访问权限，表示的是任何的场合可以被引用，这样 Java 虚拟机就可以找到 main() 方法,从而来运行 <strong>javac</strong> 程序。</li><li> <strong>static</strong>： 表明方法是静态的，不依赖类的对象的，是属于类的，在类加载的时候 main() 方法也随着加载到内存中去。</li><li> **void:main()**：方法是不需要返回值的。</li><li> <strong>main</strong>：约定俗成，规定的。</li><li> <strong>String[] args</strong>：从控制台接收参数。</li></ul></blockquote><p>今天到此！</p><p>END…</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>假期Java学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>假期Java学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>镜像站成立</title>
+    <link href="/2021/07/11/%E9%95%9C%E5%83%8F%E7%AB%99%E6%88%90%E7%AB%8B/"/>
+    <url>/2021/07/11/%E9%95%9C%E5%83%8F%E7%AB%99%E6%88%90%E7%AB%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="关于镜像站"><a href="#关于镜像站" class="headerlink" title="关于镜像站"></a>关于镜像站</h2><p>由于国内的DNS污染以及日常运维等问题，为了方便管理、加速用户访问，现已制作镜像站作为国内节点。</p><p>镜像站速度基本无延迟，不用挂载VPN等优势更加亲民。</p><p>欢迎大家以后使用新站！</p><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><p>暂定镜像站与Github Pages站点保持同步更新，镜像站作为实验站点，可能会提前引入一些新特色以及bug。</p><h2 id="镜像站地址"><a href="#镜像站地址" class="headerlink" title="镜像站地址"></a>镜像站地址</h2><p><a href="https://xingchencloud.ml/">xingchencloud.ml</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>公告</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>公告</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>新网盘上线啦</title>
+    <link href="/2021/07/03/%E6%96%B0%E7%BD%91%E7%9B%98%E4%B8%8A%E7%BA%BF%E5%95%A6/"/>
+    <url>/2021/07/03/%E6%96%B0%E7%BD%91%E7%9B%98%E4%B8%8A%E7%BA%BF%E5%95%A6/</url>
+    
+    <content type="html"><![CDATA[<h2 id="新网盘概览"><a href="#新网盘概览" class="headerlink" title="新网盘概览"></a>新网盘概览</h2><p>经过一段时间的测试，新网盘已经趋于稳定，采用阿里云api接口，速度更稳定，目前仅用于存放部分文件（下载链接有效期仅为15分钟，需要某些文件请保证自己的网速够快）</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210703/2.png" alt="示例"></p><h2 id="在线预览速度也是扛扛的【1080P】"><a href="#在线预览速度也是扛扛的【1080P】" class="headerlink" title="在线预览速度也是扛扛的【1080P】"></a>在线预览速度也是扛扛的【1080P】</h2><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210703/3.png" alt="图片内容"></p><h2 id="下载速度直接跑满带宽【国内节点】"><a href="#下载速度直接跑满带宽【国内节点】" class="headerlink" title="下载速度直接跑满带宽【国内节点】"></a>下载速度直接跑满带宽【国内节点】</h2><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210703/4.png" alt="图片内容"></p><h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>本次项目基于阿里Teambition</p><p>链接：<a href="http://gasolcloudteam.ml/">gasolcloudteam.ml</a></p><p>因阿里方调整，固本网盘将于2021年9月30日正式下架！</p><p>届时将正式启用备用网盘</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>公告</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>公告</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>你好世界-hello world 电影在线观看</title>
+    <link href="/2021/06/25/%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C-hello-world-%E7%94%B5%E5%BD%B1%E5%9C%A8%E7%BA%BF%E8%A7%82%E7%9C%8B/"/>
+    <url>/2021/06/25/%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C-hello-world-%E7%94%B5%E5%BD%B1%E5%9C%A8%E7%BA%BF%E8%A7%82%E7%9C%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>你好世界已经出来有一段时间了相信很多小伙伴早就想看了，我最近刚刚回家，所以资源上传的晚了点，想看的朋友们可以通过网站通道直接预览了！</p><h2 id="1080P在线预览通道【测试接口】"><a href="#1080P在线预览通道【测试接口】" class="headerlink" title="1080P在线预览通道【测试接口】"></a>1080P在线预览通道【测试接口】</h2><p>因不可控因素，本接口暂停在中国大陆的服务！</p><h2 id="1080P在线预览【稳定接口】"><a href="#1080P在线预览【稳定接口】" class="headerlink" title="1080P在线预览【稳定接口】"></a>1080P在线预览【稳定接口】</h2><p><video controls="controls" src="https://sf1-ttcdn-tos.pstatp.com/obj/tos-cn-v-0004/06f0a746c1c44fb6aea7bc2dcce89df5" id="ckplayer_a1" width="100%" webkit-playsinline=""></video></p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p>百度网盘：<a href="https://pan.baidu.com/s/1VKDo7lvnTP2XkG7VgsUGQg">https://pan.baidu.com/s/1VKDo7lvnTP2XkG7VgsUGQg</a> </p><p>阿里网盘：<a href="https://www.aliyundrive.com/s/WRRoic32ihT">https://www.aliyundrive.com/s/WRRoic32ihT</a></p><p>迅雷云盘：<a href="https://pan.xunlei.com/s/VMd1Xxsw7ZgqpDjqKZrazRdcA1">https://pan.xunlei.com/s/VMd1Xxsw7ZgqpDjqKZrazRdcA1</a> 提取码：b26s</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>电影资源分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>电影资源分享</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Pandownload复刻完毕</title>
+    <link href="/2021/06/25/Pandownload%E5%A4%8D%E5%88%BB%E5%AE%8C%E6%AF%95/"/>
+    <url>/2021/06/25/Pandownload%E5%A4%8D%E5%88%BB%E5%AE%8C%E6%AF%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="没错就是以前那个破解百度网盘限速的Pandownload"><a href="#没错就是以前那个破解百度网盘限速的Pandownload" class="headerlink" title="没错就是以前那个破解百度网盘限速的Pandownload"></a>没错就是以前那个破解百度网盘限速的Pandownload</h2><p>今天自费搞了个Pandownload不限速下载服务，可以实现百度网盘不限速下载。</p><p>希望大家不要滥用，每个ip每天可以下载5次。</p><p>以下为测试视频：</p><iframe src="//player.bilibili.com/player.html?aid=206357158&bvid=BV1oh41187J3&cid=359402021&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><iframe src="//player.bilibili.com/player.html?aid=206357158&bvid=BV1oh41187J3&cid=359407045&page=2" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><h2 id="Pandownload主页到后台管理页面总览"><a href="#Pandownload主页到后台管理页面总览" class="headerlink" title="Pandownload主页到后台管理页面总览"></a>Pandownload主页到后台管理页面总览</h2><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210625/home.png" alt="图片内容"></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210625/2.png" alt="图片内容"></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210625/3.png" alt="图片内容"></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210625/4.png" alt="图片内容"></p><p>感谢Github大佬的开源项目：<a href="https://github.com/yuantuo666/baiduwp-php">https://github.com/yuantuo666/baiduwp-php</a></p><p>感兴趣的也可以自己搭建试试（需要自备svip账号），如果本文对您有帮助麻烦三连或者小额捐赠表示支持，谢谢。</p><p>感兴趣的也可以自己搭建试试（需要自备svip账号），如果本文对您有帮助麻烦三连或者小额捐赠表示支持，谢谢。</p><p>感兴趣的也可以自己搭建试试（需要自备svip账号），如果本文对您有帮助麻烦三连或者小额捐赠表示支持，谢谢。</p><h2 id="成品地址"><a href="#成品地址" class="headerlink" title="成品地址"></a>成品地址</h2><p>项目地址：<a href="http://pandownload.ezyro.com/">http://pandownload.ezyro.com/</a></p><p>下载密码：联系站长获取</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>软件教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软件教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网站大更新</title>
+    <link href="/2021/06/24/%E7%BD%91%E7%AB%99%E5%A4%A7%E6%9B%B4%E6%96%B0/"/>
+    <url>/2021/06/24/%E7%BD%91%E7%AB%99%E5%A4%A7%E6%9B%B4%E6%96%B0/</url>
+    
+    <content type="html"><![CDATA[<p>不知不觉就快高二了，时间过的好快啊。</p><p>回家第一件事就是更新了本站，实在是受不了那老土的界面了去GitHub</p><p>找到相应主题后又折腾了半天</p><p>以下为部分代码展示【感谢Sw-blog主题作者提供的源文件】</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210624/1.png" alt="图片内容"></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210624/2.png" alt="图片内容"></p><p>更换了网站的CSS等，界面UI全部更换，相应内容全部迁移到新站。</p><p>这次网站相比之前不在那么单调了，但是加载时不挂载VPN的情况下</p><p>会比之前慢很多，以后有时间了做个CDN加速吧。</p><p>做了两天勉强完工吧，部分地方以后有时间再改了吧。</p><p>上传代码，完事儿，今天就折腾到这里吧。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210624/3.png" alt="图片内容"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>公告</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>公告</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>鸿蒙系统在线体验方案-星尘</title>
+    <link href="/2021/02/15/%E9%B8%BF%E8%92%99%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C%E6%96%B9%E6%A1%88-%E6%98%9F%E5%B0%98/"/>
+    <url>/2021/02/15/%E9%B8%BF%E8%92%99%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C%E6%96%B9%E6%A1%88-%E6%98%9F%E5%B0%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="使用模拟器运行应用"><a href="#使用模拟器运行应用" class="headerlink" title="使用模拟器运行应用"></a>使用模拟器运行应用</h1><p>DevEco Studio提供模拟器供开发者运行和调试HarmonyOS应用，对于Phone、Tablet、Car、TV和Wearable可以使用<strong>Remote Emulator</strong>运行应用，对于Lite Wearable和Smart Vision可以使用<strong>Simulator</strong>运行应用。</p><h2 id="使用Remote-Emulator运行应用"><a href="#使用Remote-Emulator运行应用" class="headerlink" title="使用Remote Emulator运行应用"></a>使用Remote Emulator运行应用</h2><p>DevEco Studio提供的<strong>Remote Emulator</strong>可以运行和调试Phone、Tablet、Car、TV和Wearable设备的HarmonyOS应用。在Remote Emulator上运行应用兼容签名与不签名两种类型的HAP。</p><p>Remote Emulator每次使用时长为1小时，到期后会自动释放资源，请及时完成HarmonyOS应用的调试。如果Remote Emulator到期释放后，您可以重新申请资源。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B71.png" alt="鸿蒙开发者工具1"></p><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>首先，打开鸿蒙开发者工具（DevEco Studio），新建一个项目</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B72.png" alt="鸿蒙开发者工具2"></p><p>类型选择手机</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B73.png" alt="鸿蒙开发者工具3"></p><p>等待编辑页面加载完毕后在DevEco Studio菜单栏，点击<strong>Tools &gt; HVD Manager</strong>。首次使用Remote Emulator，需下载相关资源，请点击<strong>OK</strong>，等待资源下载完成后，请重新点击<strong>Tools &gt; HVD Manager</strong>。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B74.png" alt="鸿蒙开发者工具4"></p><p>在浏览器中弹出华为开发者联盟帐号登录界面，请输入已实名认证的华为开发者联盟帐号的用户名和密码进行登录。<strong>（注：实名认证需成年人才能通过！）</strong></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B75.png" alt="鸿蒙开发者工具5"></p><p>登录后，请点击界面的<strong>允许</strong>按钮进行授权。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B76.png" alt="鸿蒙开发者工具6"></p><p>点击已经连接的Remote Emulator设备运行按钮<img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.75055469843034788914872105379419:50520210085159:2800:3D26C0B82A166754E8AD662515E84E4EC75785708B987765675CF22830B904B9.png?needInitFileName=true?needInitFileName=true" alt="img">，启动远程模拟设备（同一时间只能启动一个设备）。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B77.png" alt="鸿蒙开发者工具7"></p><p>点击DevEco Studio的<strong>Run &gt; Run’模块名称’<strong>或<img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.15736694198589975970104370753722:50520210085159:2800:18DDBD1F497E826A078CC4AD51E5D45C1F1DDA482E5A3A1053BBEB2E86C17CC1.png?needInitFileName=true?needInitFileName=true" alt="img">，或使用默认快捷键</strong>Shift+F10</strong>（Mac为<strong>Control+R</strong>）</p><p>在弹出的Select Deployment Target界面选择已启动的Remote Emulator设备，点击<strong>OK</strong>按钮。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B78.png"></p><p>DevEco Studio会启动应用的编译构建，完成后应用即可运行在Remote Emulator上。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B79.png"></p><p>Remote Emulator侧边栏按钮作用：</p><p><img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.94969050589840983619857892936031:50520210085159:2800:11D0AE054867F15832259EE46B7A3A97852790B6F01F1F276C24BBC9329C98F9.png?needInitFileName=true?needInitFileName=true" alt="img">：释放当前正在使用的Remote Emulator，单次使用时长为1小时。</p><p><img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.01054159534767479809865528848328:50520210085159:2800:EA0AC8C6E4D78960960F7CB1014E702EEF32F3F5275A7872948FA7FA296996EC.png?needInitFileName=true?needInitFileName=true" alt="img">：设置Remote Emulator设备分辨率。</p><p><img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.79688989657115526346960586850561:50520210085159:2800:2FC5BBC31CE51186FB02CDC5820A67078567A6F256C039117C94CEE511049B11.png?needInitFileName=true?needInitFileName=true" alt="img">：顺时针旋转屏幕，只有Phone和Tablet支持横竖屏切换的应用才能旋转。</p><p><img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.10389675745606253710101932018178:50520210085159:2800:47DBF9443F4378FEA2D93EB14C1CB01D44A6DA3DEB4FABEE5937983D76745674.png?needInitFileName=true?needInitFileName=true" alt="img">后退按钮。</p><p><img src="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210210162223.04980202603311831952714065339760:50520210085159:2800:7E52B2EF3CCA799628755ABEB56C663E9C92F078ED0B04BA4143111C596FC4E8.png?needInitFileName=true?needInitFileName=true" alt="img">：返回设备主界面。</p><p>至此关于使用鸿蒙官方开发者工具（DevEco Studio）体验鸿蒙系统教程到此结束，感谢您的观看！</p><p>如有错误地方欢迎联系我们修改！</p><h3 id="DevEco-Studio下载地址"><a href="#DevEco-Studio下载地址" class="headerlink" title="DevEco Studio下载地址"></a>DevEco Studio下载地址</h3><p><a href="https://xingchen.love/%E5%8D%8E%E4%B8%BA%E9%B8%BF%E8%92%99%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C%E5%B7%A5%E5%85%B7/">点击跳转</a></p><p>建议使用aria2等多线程方式【部分地区访问缓慢】</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>软件教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软件教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网盘搭建完毕-星尘</title>
+    <link href="/2021/02/11/%E7%BD%91%E7%9B%98%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%AF%95-%E6%98%9F%E5%B0%98/"/>
+    <url>/2021/02/11/%E7%BD%91%E7%9B%98%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%AF%95-%E6%98%9F%E5%B0%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="本站网盘已经搭建完毕！"><a href="#本站网盘已经搭建完毕！" class="headerlink" title="本站网盘已经搭建完毕！"></a>本站网盘已经搭建完毕！</h1><p>现在终于可以做到反垄断了，不用担心个人数据存储问题了，以后分享的资源都将在网盘里做一份备份，大家可以随时访问、下载。</p><p>以下为测试视频（注：目前网盘仅作为我方分享下载功能，暂不开放注册使用）</p><p><video controls="controls" src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/网盘测试-1.mp4" id="ckplayer_a1" width="100%" webkit-playsinline=""></video></p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E7%BD%91%E7%9B%98%E6%B5%8B%E8%AF%95-2.PNG" alt="网盘测试https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/网盘测试-2.PNG"></p><h2 id="体验地址："><a href="#体验地址：" class="headerlink" title="体验地址："></a>体验地址：</h2><p>临时域名：<del>lihaoblog.tk</del></p><p>正式域名：xingchen.love</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>公告</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>公告</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>手机投屏解决方案-星尘</title>
+    <link href="/2021/02/05/%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B1%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%E6%98%9F%E5%B0%98/"/>
+    <url>/2021/02/05/%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B1%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%E6%98%9F%E5%B0%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="关于手机投屏到电脑"><a href="#关于手机投屏到电脑" class="headerlink" title="关于手机投屏到电脑"></a>关于手机投屏到电脑</h1><p>现在市面上五花八门的投屏软件一大堆，随便一找什么  米卓投屏、爱投屏  下载后调试了半天，发现其实并不好用，甚至根本用不了！</p><p>那么我就像简单的投个屏有那么难吗？</p><p>非也！今天站长就给大家带来一款投屏软件：<strong>Lenovo One Lite</strong></p><h2 id="Lenovo-One-Lite简介"><a href="#Lenovo-One-Lite简介" class="headerlink" title="Lenovo One Lite简介"></a>Lenovo One Lite简介</h2><p>​        Lenovo One lite手机投屏神器是联想投屏软件，让你可以在PC端轻松投屏，基于usb有线技术，实现快速连接，稳定流畅，打破了设备和系统之间的壁垒，支持pc和手机端文件有线传输，多一种方式，多一种选择，帮助用户实现电脑与手机完美融合。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E8%81%94%E6%83%B3%E6%8A%95%E5%B1%8F.jpg" alt="示例"></p><p>以下为宣传视频：<br><video controls="controls" src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/v2.mp4" id="ckplayer_a1" width="100%" webkit-playsinline=""></video></p><h3 id="特色功能"><a href="#特色功能" class="headerlink" title="特色功能"></a>特色功能</h3><p>　　高清投屏，一键连接</p><p>　　新版本支持全品牌安卓设备，基于usb有线技术，实现快速连接，稳定流畅，更有画质优先，均衡模式，速度优先三种模式选择。</p><p>　　文件互传，不止一种选择</p><p>　　全新接入“互传联盟”无线传输协议，实现系统级的“互通”，为用户提供跨平台、高速、稳定和0流量的本地文件快传体验。同时支持pc和手机端文件有线传输，多一种方式，多一种选择。</p><p>　　键鼠模式，畅玩游戏</p><p>　　电脑玩手游，键盘、鼠标自定义控制，无需模拟器。高清画质，帧率自选，告别卡顿，开启手游新玩法！</p><p>　　软件特色系统深度融合</p><p>　　从系统层面实现互联，电脑与手机完美融合。</p><p>　　应用无缝打通</p><p>　　无需模拟器，在电脑上也可流畅使用安卓应用，打破生态壁垒。</p><p>　　文件快速互传</p><p>　　只需一步，就可实现文件跨设备无线互传，高效又便捷。</p><p>　　尽享大屏优势</p><p>　　仅需聚焦电脑，畅享大屏带来的观感提升和效率提高。</p><p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/%E8%81%94%E6%83%B3%E6%8A%95%E5%B1%8F.png" alt="安装界面"></p><p>心动不如行动，感兴趣的小伙伴快去体验吧！</p><h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a href="https://lihaoyun.lanzous.com/b0e8hgtyj">https://lihaoyun.lanzous.com/b0e8hgtyj</a><br>提取密码:lxtp</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>软件分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软件分享</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
-    <link href="/2021/08/09/hello-world/"/>
-    <url>/2021/08/09/hello-world/</url>
+    <link href="/2021/01/24/hello-world/"/>
+    <url>/2021/01/24/hello-world/</url>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
