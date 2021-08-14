@@ -102,12 +102,6 @@ collections:
     name: pages
     delete: false
     files:
-      - name: tags-index.md
-        label: 标签
-        file: source\tags\index.md
-        editor:
-          preview: true
-        fields: *ref_0
       - name: juanzeng-index.md
         label: 欢迎打赏！
         file: source\juanzeng\index.md
@@ -117,6 +111,12 @@ collections:
       - name: about-index.md
         label: about
         file: source\about\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: tags-index.md
+        label: 标签
+        file: source\tags\index.md
         editor:
           preview: true
         fields: *ref_0
