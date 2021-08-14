@@ -102,15 +102,15 @@ collections:
     name: pages
     delete: false
     files:
-      - name: juanzeng-index.md
-        label: 欢迎打赏！
-        file: source\juanzeng\index.md
-        editor:
-          preview: true
-        fields: *ref_0
       - name: about-index.md
         label: about
         file: source\about\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: juanzeng-index.md
+        label: 欢迎打赏！
+        file: source\juanzeng\index.md
         editor:
           preview: true
         fields: *ref_0
