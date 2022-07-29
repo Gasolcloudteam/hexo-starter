@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210709/favicon-128x128.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210709/favicon-128x128.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#696969">
+  <meta name="author" content="星尘">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="✨前言我们都知道，Hexo 是一个静态部署博客的框架，优点在于速度快，成本低（无需服务器），缺点在于繁琐，你每次更新文章都需要去改代码，再部署推送，修改配置也是如此，你不能像 WordPress 一样直接在后台修改配置并使它生效。 不过有很多教程可以让你无需繁琐的部署，只管推送代码，通过 GitHub Actions，travis-ci，vercel，Netlify 等都可以便捷的进行博客的部署，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo通过Netlify CMS实现在线编辑文章">
+<meta property="og:url" content="https://xingchenblog.ml/2021/08/14/Hexo%E9%80%9A%E8%BF%87Netlify-CMS%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:site_name" content="枷锁云-星尘blog">
+<meta property="og:description" content="✨前言我们都知道，Hexo 是一个静态部署博客的框架，优点在于速度快，成本低（无需服务器），缺点在于繁琐，你每次更新文章都需要去改代码，再部署推送，修改配置也是如此，你不能像 WordPress 一样直接在后台修改配置并使它生效。 不过有很多教程可以让你无需繁琐的部署，只管推送代码，通过 GitHub Actions，travis-ci，vercel，Netlify 等都可以便捷的进行博客的部署，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rmt.ladydaily.com/fetch/fluid/storage/hexo-netlify/cover.png?w=480&fmt=webp">
+<meta property="article:published_time" content="2021-08-14T07:52:15.000Z">
+<meta property="article:modified_time" content="2022-07-01T02:32:18.801Z">
+<meta property="article:author" content="星尘">
+<meta property="article:tag" content="技术教程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rmt.ladydaily.com/fetch/fluid/storage/hexo-netlify/cover.png?w=480&fmt=webp">
+  
+  
+  <title>Hexo通过Netlify CMS实现在线编辑文章 - 枷锁云-星尘blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xingchenblog.ml","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":180,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>枷锁云-星尘blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.dmoe.cc/random.php') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo通过Netlify CMS实现在线编辑文章"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星尘
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-14 15:52" pubdate>
+          2021年8月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo通过Netlify CMS实现在线编辑文章</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="✨前言"><a href="#✨前言" class="headerlink" title="✨前言"></a>✨前言</h2><p>我们都知道，<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a> 是一个静态部署博客的框架，优点在于速度快，成本低（无需服务器），缺点在于繁琐，你每次更新文章都需要去改代码，再部署推送，修改配置也是如此，你不能像 <code>WordPress</code> 一样直接在后台修改配置并使它生效。</p>
+<p>不过有很多教程可以让你无需繁琐的部署，只管推送代码，通过 <code>GitHub Actions</code>，<code>travis-ci</code>，<a target="_blank" rel="noopener" href="https://vercel.com/">vercel</a>，<a href="netlifyhttps://www.netlify.com/">Netlify</a> 等都可以便捷的进行博客的部署，只管写代码然后推送就好，类似的教程有非常多，在此就不再重复介绍。那么，我们是否可以在此基础上，更加便捷的进行静态博客的写作和管理？答案是可以的。</p>
+<p>我们可以通过将博客部署到 <a target="_blank" rel="noopener" href="https://www.netlify.com/">Netlify</a>，并使用 <a target="_blank" rel="noopener" href="https://www.netlifycms.org/">Netlify CMS</a> 来做到这一点。</p>
+<p>首先，我们来了解一下配置完之后可以做到哪些事情？</p>
+<ul>
+<li>在线新建，编辑，预览，删除博客文章</li>
+<li>支持文章草稿，工作流</li>
+<li>支持对博客图片的管理</li>
+<li>支持在线修改博客配置，例如对首页顶部图的修改，友链的修改</li>
+</ul>
+<h3 id="🎈图片预览"><a href="#🎈图片预览" class="headerlink" title="🎈图片预览"></a>🎈图片预览</h3><p>配置完的界面</p>
+<p><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210420211303684.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p>在线对文章进行编辑，修改</p>
+<p><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210418222435713.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<h2 id="📃简单说明"><a href="#📃简单说明" class="headerlink" title="📃简单说明"></a>📃简单说明</h2><p>下面我将会以 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a> + 做演示，只要你配置完成，几乎可以修改所有配置项。包括但不限于以下类型的文件<code>yml</code>、<code>yaml</code>、<code>toml</code>、<code>json</code>、<code>md</code>、<code>markdown</code>、<code>html</code>具体请查看 👉<a target="_blank" rel="noopener" href="https://www.netlifycms.org/">Netlify CMS</a> 文档。</p>
+<h2 id="🔧具体配置"><a href="#🔧具体配置" class="headerlink" title="🔧具体配置"></a>🔧具体配置</h2><p><a target="_blank" rel="noopener" href="https://www.netlifycms.org/">Netlify CMS</a> 使用的前提条件是你必须将博客部署到 <a target="_blank" rel="noopener" href="https://www.netlify.com/">Netlify</a> 上。因为网上有很多部署教程，这里不再重复。</p>
+<p>具体可以查看：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://guanqr.com/tech/website/deploy-blog-to-netlify/">博客通过 Netlify 实现持续集成</a></li>
+<li><a target="_blank" rel="noopener" href="https://io-oi.me/tech/deploy-static-site-to-netlify/">将 Hexo 静态博客部署到 Netlify</a></li>
+</ul>
+<h3 id="👟准备工作"><a href="#👟准备工作" class="headerlink" title="👟准备工作"></a>👟准备工作</h3><p>在部署完成后，你需要开启 <code>Identity</code></p>
+<p><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210418225044656.png" srcset="/img/loading.gif" lazyload alt="图片内容"></p>
+<p>进入设置中</p>
+<p><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210418225125358.png" srcset="/img/loading.gif" lazyload alt="图片内容"></p>
+<p>将 Registration preferences 修改为 Invite only 此项为是否开启注册，默认是开启注册。修改为 Invite only 后表示仅受邀请的用户可以注册，当然此项你可以在自己注册完毕之后再行修改。</p>
+<p><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210418225239607.png" srcset="/img/loading.gif" lazyload alt="图片内容"></p>
+<p>下滑找到 Git Gateway 并开启。<br><img src="https://gitee.com/leicancun/cdn/raw/master/Netlify-cms/image-20210418225726557.png" srcset="/img/loading.gif" lazyload alt="图片内容"></p>
+<p>至此准备工作完成</p>
+<h3 id="🎨安装"><a href="#🎨安装" class="headerlink" title="🎨安装"></a>🎨安装</h3><h4 id="Step1-添加依赖（二选一）"><a href="#Step1-添加依赖（二选一）" class="headerlink" title="Step1: 添加依赖（二选一）"></a>Step1: 添加依赖（二选一）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yarn add hexo-netlify-cms<br>// or npm<br>npm i hexo-netlify-cms --save<br></code></pre></td></tr></table></figure>
+
+<h4 id="Step2-在Hexo中添加配置"><a href="#Step2-在Hexo中添加配置" class="headerlink" title="Step2: 在Hexo中添加配置"></a>Step2: 在Hexo中添加配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">netlify_cms:</span><br>  <span class="hljs-attr">backend:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">git-gateway</span><br>    <span class="hljs-attr">branch:</span> <span class="hljs-string">man</span> <span class="hljs-comment">#这里以你的仓库实际分支为准，有的是master</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Step3-添加netlify-identity-widget-js-代码如下"><a href="#Step3-添加netlify-identity-widget-js-代码如下" class="headerlink" title="Step3: 添加netlify-identity-widget.js, 代码如下"></a>Step3: 添加netlify-identity-widget.js, 代码如下</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script src=<span class="hljs-string">&quot;https://identity.netlify.com/v1/netlify-identity-widget.js&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210814/10.png" srcset="/img/loading.gif" lazyload alt="图片内容"></p>
+<p><strong>注意： 建议将身份认证设为仅邀请模式</strong></p>
+<p>Okay, 现在Netlify CMS已经好了, 你可以访问<code>你的站点域名/admin</code>查看</p>
+<h4 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h4><p>自定义pages自动生成配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs text">netlify_cms:<br>  # pages auto generate<br>  pages: <br>    enabled: true<br>    # over page collection config<br>    # if fields not set, would use posts fields config<br>    config:<br>      label: &quot;Page&quot;<br>      delete: false<br>      editor:<br>        preview: true<br>      # fields:<br></code></pre></td></tr></table></figure>
+
+<p>自定义配置文件，覆盖默认的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">netlify_cms:<br>  config_file: netlify.yaml<br></code></pre></td></tr></table></figure>
+
+<p>开启/关闭覆盖时间格式配置(默认true)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">netlify_cms:<br>  over_format: true<br></code></pre></td></tr></table></figure>
+
+<p>添加脚本, 用于自定义组件和预览样式<br>例如：<br>添加<code>example/source/js/cms/youtube.js</code>至你的博客下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text"># 需要跳过配置<br>skip_render:<br>  - js/**<br>netlify_cms:<br>  scripts:<br>    - js/cms/youtube.js<br></code></pre></td></tr></table></figure>
+
+<p>另外，其他的<code>netlify_cms</code>配置变量可以在<a href="https://link.zhihu.com/?target=https://www.netlifycms.org/docs/configuration-options/">Netlify CMS</a>中找到</p>
+<h4 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">yarn link<br>cd example<br>yarn link hexo-netlify-cms<br>hexo s<br></code></pre></td></tr></table></figure>
+
+<h4 id="关于脚本"><a href="#关于脚本" class="headerlink" title="关于脚本"></a>关于脚本</h4><p>事实上只是简单的在admin的页面下引入，可以通过Netlift CMS的全局变量<code>CMS</code>添加你想实现的自定义组件等。但这块需要花很多时间维护，毕竟预览的原理和hexo生成文件并不一样…</p>
+<p>后续可能会添加对Image Tag的支持(其它应该不考虑实现，因为用不到)….</p>
+<h2 id="详细可见官方中文文档"><a href="#详细可见官方中文文档" class="headerlink" title="详细可见官方中文文档"></a>详细可见官方中文文档</h2><p><a target="_blank" rel="noopener" href="https://github.com/jiangtj/hexo-netlify-cms/blob/master/README-ZH.md">点击此处跳转</a></p>
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p><a href="jiangtj/hexo-netlify-cms">jiangtj/hexo-netlify-cms</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/" class="category-chain-item">技术教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">#技术教程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo通过Netlify CMS实现在线编辑文章</div>
+      <div>https://xingchenblog.ml/2021/08/14/Hexo%E9%80%9A%E8%BF%87Netlify-CMS%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E6%96%87%E7%AB%A0/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星尘</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月14日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/15/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Python学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/14/%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B1%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94AnLink/" title="手机投屏程序——AnLink">
+                        <span class="hidden-mobile">手机投屏程序——AnLink</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="cusdis" style="width:100%">
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="f411daba-53ff-4db0-88fb-2b733aee5be2"
+      data-page-id="189662406867e264630cc0933b6f4b97"
+      data-page-url="2021/08/14/Hexo通过Netlify-CMS实现在线编辑文章/"
+      data-page-title="Hexo通过Netlify CMS实现在线编辑文章"
+      data-theme="auto"
+    >
+    </div>
+  </div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#cusdis_thread', function() {
+      Fluid.utils.createScript('https://cusdis.com/js/widget/lang/zh-cn.js');
+      Fluid.utils.createScript('https://cusdis.com/js/cusdis.es.js');
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema) {
+        document.querySelector('#cusdis_thread').dataset.theme = schema
+      }
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://xingchencloud.top/" target="_blank" rel="nofollow noopener"><span>枷锁云-星尘</span></a> <i class="iconfont icon-love"></i> <a href="\juanzeng\index.html" target="_blank" rel="nofollow noopener"><span>捐赠</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

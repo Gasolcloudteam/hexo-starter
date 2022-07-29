@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210709/favicon-128x128.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/Gasolcloudteam/cdn@main/20210709/favicon-128x128.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#696969">
+  <meta name="author" content="星尘">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在Centos7中配置ip均优先执行以下操作通过cd命令进入到network-scripts目录 1cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts ls 命令查看当前文件夹的网卡文件  然后通过vi指令编辑网卡文件，本文以ifcfg-ens33为例 这里是以默认未配置的原生网卡做演示 温馨提示：vi编辑器按下键盘  “i”键  进入编辑模式，编辑内容完毕后按键盘  “Esc”键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7网络IP配置教程">
+<meta property="og:url" content="https://xingchenblog.ml/2022/05/30/centos7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="枷锁云-星尘blog">
+<meta property="og:description" content="在Centos7中配置ip均优先执行以下操作通过cd命令进入到network-scripts目录 1cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts ls 命令查看当前文件夹的网卡文件  然后通过vi指令编辑网卡文件，本文以ifcfg-ens33为例 这里是以默认未配置的原生网卡做演示 温馨提示：vi编辑器按下键盘  “i”键  进入编辑模式，编辑内容完毕后按键盘  “Esc”键">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gasolcloudteam.coding.net/p/cdn/d/cdn/git/lfs/main/20220603/linux.jpg">
+<meta property="article:published_time" content="2022-05-30T14:55:21.000Z">
+<meta property="article:modified_time" content="2022-07-29T12:52:35.942Z">
+<meta property="article:author" content="星尘">
+<meta property="article:tag" content="Linux教程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gasolcloudteam.coding.net/p/cdn/d/cdn/git/lfs/main/20220603/linux.jpg">
+  
+  
+  <title>centos7网络IP配置教程 - 枷锁云-星尘blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xingchenblog.ml","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":180,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>枷锁云-星尘blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.dmoe.cc/random.php') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="centos7网络IP配置教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星尘
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-30 22:55" pubdate>
+          2022年5月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">centos7网络IP配置教程</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="在Centos7中配置ip"><a href="#在Centos7中配置ip" class="headerlink" title="在Centos7中配置ip"></a>在Centos7中配置ip</h1><h2 id="均优先执行以下操作"><a href="#均优先执行以下操作" class="headerlink" title="均优先执行以下操作"></a>均优先执行以下操作</h2><p>通过cd命令进入到network-scripts目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/sysconfig/network-scripts<br></code></pre></td></tr></table></figure>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/1.cd%E5%88%B0network-scripts.png" srcset="/img/loading.gif" lazyload><br>ls 命令查看当前文件夹的网卡文件</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/2.%E9%80%9A%E8%BF%87ls%E6%89%BE%E5%88%B0%E7%BD%91%E5%8D%A1%E6%96%87%E4%BB%B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后通过vi指令编辑网卡文件，本文以ifcfg-ens33为例</p>
+<p><strong>这里是以默认未配置的原生网卡做演示</strong></p>
+<p>温馨提示：<strong>vi编辑器按下键盘  “i”键  进入编辑模式，编辑内容完毕后按键盘  “Esc”键  此时按下  “shift+;:”两个键  输入  “wq”保存并退出</strong></p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/4.vi%E7%BC%96%E8%BE%91%E5%99%A8%E4%BF%9D%E5%AD%98%E5%B9%B6%E9%80%80%E5%87%BA%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="IP分配方式-static-dhcp"><a href="#IP分配方式-static-dhcp" class="headerlink" title="IP分配方式(static/dhcp)"></a>IP分配方式(static/dhcp)</h2><h3 id="1-默认配置启用网卡，使用动态获取ip的方式"><a href="#1-默认配置启用网卡，使用动态获取ip的方式" class="headerlink" title="1.默认配置启用网卡，使用动态获取ip的方式"></a>1.默认配置启用网卡，使用动态获取ip的方式</h3><p><strong>记得“:wq”保存并退出哦</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">动态ip配置修改项：<br>ONBOOT=YES <span class="hljs-comment">#启用网卡</span><br>BOOTPROTO=DHCP <span class="hljs-comment">#ip分配方式 DHCP为动态获取 static为静态获取 这里演示动态获取</span><br></code></pre></td></tr></table></figure>
+
+<p>1.vi指令编辑网卡文件（<code>vi ifcfg-ens33</code>）</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/3.vi%E7%BC%96%E8%BE%91%E7%BD%91%E5%8D%A1.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.按照开头说明修改项编辑，启动虚拟网卡</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/5.%E9%85%8D%E7%BD%AE%E5%8A%A8%E6%80%81ip.png" srcset="/img/loading.gif" lazyload></p>
+<p>3.通过<code>service network restart</code>命令重启网卡服务</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/6.%E9%87%8D%E5%90%AF%E7%BD%91%E5%8D%A1%E6%9C%8D%E5%8A%A1.png" srcset="/img/loading.gif" lazyload></p>
+<p>4.通过<code>ip a</code>命令，查看配置好的网卡动态ip地址</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/7.%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8A%A8%E6%80%81ip.png" srcset="/img/loading.gif" lazyload></p>
+<p>5.使用Windows cmd ，ping一下虚拟机动态ip，查看是否配置成功</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/8.ping%E6%9F%A5%E7%9C%8B%E5%8A%A8%E6%80%81ip%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload></p>
+<p>以上便是动态ip的配置教程，请仔细阅读，不要忽视细节，谢谢配合！</p>
+<h3 id="1-使用静态配置ip的方式"><a href="#1-使用静态配置ip的方式" class="headerlink" title="1.使用静态配置ip的方式"></a>1.使用静态配置ip的方式</h3><p><strong>记得“:wq”保存并退出哦</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">静态ip配置修改/新增项：<br>ONBOOT=YES <span class="hljs-comment">#启用网卡</span><br>BOOTPROTO=static <span class="hljs-comment">#ip分配方式 DHCP为动态获取 static为静态获取 这里演示静态获取</span><br>IPADDR=172.16.12.99 <span class="hljs-comment">#172.16.12需要查看电脑vmnet8的网关地址</span><br>GATEWAY=172.16.12.1 <span class="hljs-comment">#同上</span><br>NETMASK=255.255.255.0 <span class="hljs-comment">#子网掩码</span><br></code></pre></td></tr></table></figure>
+
+<p>1.vi命令编辑网卡</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/3.vi%E7%BC%96%E8%BE%91%E7%BD%91%E5%8D%A1.png" srcset="/img/loading.gif" lazyload></p>
+<p>2.参考开头的静态ip配置修改/新增项，按照实际情况修改</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/9.%E9%9D%99%E6%80%81ip%E7%9A%84%E9%85%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></p>
+<p>3.通过<code>service network restart</code>命令重启网卡服务</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/6.%E9%87%8D%E5%90%AF%E7%BD%91%E5%8D%A1%E6%9C%8D%E5%8A%A1.png" srcset="/img/loading.gif" lazyload></p>
+<p>4.通过<code>ip a</code>命令查看配置好的网卡静态ip</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/10.%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E9%9D%99%E6%80%81ip.png" srcset="/img/loading.gif" lazyload></p>
+<p>5.打开Windows cmd，ping虚拟机静态ip查看是否配置成功</p>
+<p><img src="https://xingchendrive.ml/file/xingchen/%E8%AF%BE%E7%A8%8B/ip%E9%85%8D%E7%BD%AE/11.ping%E6%9F%A5%E7%9C%8B%E9%9D%99%E6%80%81ip%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="关于网络配置针对网卡的常用指令"><a href="#关于网络配置针对网卡的常用指令" class="headerlink" title="关于网络配置针对网卡的常用指令"></a>关于网络配置针对网卡的常用指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmcli device status <span class="hljs-comment">#查看网卡设备状态</span><br><br>nmcli connection show <span class="hljs-comment">#查看链接的状态</span><br><br>ip a  <span class="hljs-comment">#查看网络信息</span><br><br>nmcli device connect ens33  <span class="hljs-comment">#链接上指定网卡(ens33是网卡名称)</span><br><br>nmcli device disconnect ens33 <span class="hljs-comment">#断开网卡链接</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="本文离线文档下载"><a href="#本文离线文档下载" class="headerlink" title="本文离线文档下载"></a>本文离线文档下载</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://lihaoyun.lanzoub.com/b0e9z048b">点击跳转</a></p>
+<p>密码:ga33</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>关于配置网络ip的作用，后期使用到需要ip连接的服务，比如搭建ftp服务器，NFS多平台文件协议等均需使用，所以建议新手尽快上手熟悉！</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux%E6%95%99%E7%A8%8B/" class="category-chain-item">Linux教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux%E6%95%99%E7%A8%8B/">#Linux教程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>centos7网络IP配置教程</div>
+      <div>https://xingchenblog.ml/2022/05/30/centos7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星尘</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月30日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/31/ssh%E8%BF%9E%E6%8E%A5Linux/" title="ssh连接Linux">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ssh连接Linux</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/01/UnblockNeteaseMusic%E8%87%AA%E5%BB%BA%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="UnblockNeteaseMusic自建网易云音乐服务器">
+                        <span class="hidden-mobile">UnblockNeteaseMusic自建网易云音乐服务器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div class="cusdis" style="width:100%">
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="f411daba-53ff-4db0-88fb-2b733aee5be2"
+      data-page-id="84c8fd21bded846d67ee325ec91d2f51"
+      data-page-url="2022/05/30/centos7网络配置教程/"
+      data-page-title="centos7网络IP配置教程"
+      data-theme="auto"
+    >
+    </div>
+  </div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#cusdis_thread', function() {
+      Fluid.utils.createScript('https://cusdis.com/js/widget/lang/zh-cn.js');
+      Fluid.utils.createScript('https://cusdis.com/js/cusdis.es.js');
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema) {
+        document.querySelector('#cusdis_thread').dataset.theme = schema
+      }
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://xingchencloud.top/" target="_blank" rel="nofollow noopener"><span>枷锁云-星尘</span></a> <i class="iconfont icon-love"></i> <a href="\juanzeng\index.html" target="_blank" rel="nofollow noopener"><span>捐赠</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
